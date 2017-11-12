@@ -1,0 +1,41 @@
+{
+  "name": "vue-projection-grid",
+  "version": "1.0.0",
+  "description": "```vue\r <template lang=\"pug\">\r .grid-example\r   .filter-container\r   .grid-container\r     grid(config=\"gridConfig\", grid-dataSource=\"gridDataSource\")\r       scroll(view-port={{window}} virtualized header.sticky={{ {offset => () => {\r         // calculating offset\r       }} }})\r       filter(v-bind:conditions=\"filters\")\r   .pagination-control-container\r </template>",
+  "main": "dist/index",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projection-grid/vue-projection-grid.git"
+  },
+  "keywords": [
+    "vue",
+    "projection",
+    "grid",
+    "table",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/projection-grid/vue-projection-grid/issues"
+  },
+  "homepage": "https://github.com/projection-grid/vue-projection-grid#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "dependencies": {
+    "vue": "^2.4.4"
+  }
+}
