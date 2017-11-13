@@ -1,0 +1,85 @@
+{
+  "name": "vue-projection-grid",
+  "version": "1.0.0",
+  "description": "```vue\r <template lang=\"pug\">\r .grid-example\r   .filter-container\r   .grid-container\r     grid(config=\"gridConfig\", grid-dataSource=\"gridDataSource\")\r       scroll(view-port={{window}} virtualized header.sticky={{ {offset => () => {\r         // calculating offset\r       }} }})\r       filter(v-bind:conditions=\"filters\")\r   .pagination-control-container\r </template>",
+  "main": "dist/index",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest",
+    "demo": "webpack && cd demo/default && webpack",
+    "dev": "cd demo/default && webpack-dev-server --hot --config ./webpack.dev.config.js",
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projection-grid/vue-projection-grid.git"
+  },
+  "keywords": [
+    "vue",
+    "projection",
+    "grid",
+    "table",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/projection-grid/vue-projection-grid/issues"
+  },
+  "homepage": "https://github.com/projection-grid/vue-projection-grid#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-vue": "^2.1.0",
+    "file-loader": "^1.1.4",
+    "jest": "^21.2.1",
+    "jest-serializer-vue": "^0.3.0",
+    "jsdoc": "^3.5.5",
+    "jsdoc-vuejs": "^1.0.11",
+    "vue-jest": "^1.0.2",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "vue-test-loader": "^0.4.0",
+    "vue-test-utils": "^1.0.0-beta.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "dependencies": {
+    "vue": "^2.4.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "./node_modules/babel-jest",
+      ".*\\.(vue)$": "./node_modules/vue-jest"
+    },
+    "snapshotSerializers": [
+      "./node_modules/jest-serializer-vue"
+    ],
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage-report",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}
