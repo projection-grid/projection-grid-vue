@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "demo:basic": "webpack && cd demo/basic && webpack"
+    "demo:basic": "webpack && cd demo/basic && webpack",
+    "dev": "cd demo/dev && webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
