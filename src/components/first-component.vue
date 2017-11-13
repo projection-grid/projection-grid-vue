@@ -3,6 +3,10 @@
 </template>
 
 <script>
+import foo from '../utils/index';
+
+console.log(foo()); // eslint-disable-line
+
 export default {
   // ...
 };
