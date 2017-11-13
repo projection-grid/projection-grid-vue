@@ -17,7 +17,13 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
     ]
   }
 }

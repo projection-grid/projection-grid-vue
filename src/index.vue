@@ -12,6 +12,6 @@ export default {
   components: {
     child: FirstComponent,
   },
-}
+};
 </script>
 
