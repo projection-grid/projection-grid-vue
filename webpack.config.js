@@ -9,7 +9,8 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: 'index.js',
-    publicPath: '/',
+    libraryTarget: 'umd',
+    library: 'VueProjectionGrid',
   },
   module: {
     rules: [
