@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import foo from '../utils/index';
+import foo from '../utils/foo';
 
-console.log(foo()); // eslint-disable-line
+foo();
 
 export default {
   // ...
