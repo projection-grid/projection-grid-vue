@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var path = require('path')
 var webpack = require('webpack')
 
@@ -28,5 +30,15 @@ module.exports = {
         exclude:  [/node_modules/, /dist/],
       },
     ],
+  },
+  devServer: {
+    contentBase: './',
+    port: 9001,
+    publicPath: '/dist/'
+  },
+  resolve: {
+    alias: {
+      VueProjectionGrid: '../../dist/index',
+    },
   },
 };

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "demo:basic": "webpack && cd demo/basic && webpack",
-    "dev": "cd demo/dev && webpack-dev-server --hot",
+    "demo": "webpack && cd demo/default && webpack",
+    "dev": "cd demo/default && webpack-dev-server --hot --config ./webpack.dev.config.js",
     "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
   },
   "repository": {
