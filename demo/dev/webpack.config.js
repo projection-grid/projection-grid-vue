@@ -30,9 +30,6 @@ module.exports = {
     ],
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true,
     contentBase: './',
     port: 9000,
     publicPath: '/dist/',
