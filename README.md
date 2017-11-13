@@ -21,7 +21,7 @@ npm run build
 To build the basic demo:
 
 ```bash
-npm run demo:basic
+npm run demo
 ```
 
 To start the dev page with hot reloading
