@@ -7,7 +7,8 @@
     "build": "webpack",
     "test": "jest",
     "demo:basic": "webpack && cd demo/basic && webpack",
-    "dev": "cd demo/dev && webpack-dev-server --hot"
+    "dev": "cd demo/dev && webpack-dev-server --hot",
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,8 @@
     "file-loader": "^1.1.4",
     "jest": "^21.2.1",
     "jest-serializer-vue": "^0.3.0",
+    "jsdoc": "^3.5.5",
+    "jsdoc-vuejs": "^1.0.11",
     "vue-jest": "^1.0.2",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",

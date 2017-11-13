@@ -8,6 +8,9 @@
 <script>
 import FirstComponent from './components/first-component.vue';
 
+/**
+ * @vue The root component.
+ */
 export default {
   components: {
     child: FirstComponent,
