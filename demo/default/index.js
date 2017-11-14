@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import VueProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
+import App from './app.vue';
 
 new Vue({ // eslint-disable-line
   el: '#app',
-  render: h => h(VueProjectionGrid),
+  render: h => h(App),
 });
