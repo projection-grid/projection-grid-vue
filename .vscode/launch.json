@@ -16,7 +16,7 @@
       "request": "launch",
       "runtimeArgs": [
         "--inspect-brk",
-        "D:/codebase/vue-projection-grid/node_modules/.bin/jest",
+        "D:/codebase/vue-projection-grid/node_modules/jest/bin/jest.js",
         "--runInBand"
       ],
       "console": "integratedTerminal",

@@ -20,15 +20,17 @@ export default {
   props: ['config'],
   data() {
     return {
-      gridView: {},
+      gridView: pgrid.factory({ vnext: true })
+        .create({
+          tableClasses: this.config.tableClasses,
+          dataSource: this.config.dataSource,
+        }).gridView.render(),
     };
   },
-  mounted() {
-    this.gridView = pgrid.factory({ vnext: true })
-      .create({
-        tableClasses: this.config.tableClasses,
-        dataSource: this.config.dataSource,
-      }).gridView.render();
+  beforeDestory() {
+    if (this.gridView) {
+      this.gridView.remove();
+    }
   },
 };
 </script>
