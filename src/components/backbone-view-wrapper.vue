@@ -7,7 +7,7 @@
 export default {
   props: ['containerClasses', 'view'],
   mounted() {
-    this.$props.view.render().$el.appendTo(this.$el);
+    this.$props.view.$el.appendTo(this.$el);
   },
   beforeDestory() {
     if (this.$props.view) {

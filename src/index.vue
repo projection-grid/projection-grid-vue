@@ -24,7 +24,7 @@ export default {
         .create({
           tableClasses: this.config.tableClasses,
           dataSource: this.config.dataSource,
-        }).gridView,
+        }).gridView.render(),
     };
   },
   beforeDestory() {
