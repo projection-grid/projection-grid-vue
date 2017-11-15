@@ -11,7 +11,7 @@ export default {
   },
   beforeDestory() {
     if (this.$props.view) {
-      this.$props.view.remove();
+      this.$props.view.$el.detach();
     }
   },
 };
