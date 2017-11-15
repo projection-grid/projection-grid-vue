@@ -6,13 +6,8 @@
 <script>
 export default {
   props: ['containerClasses', 'view'],
-  data() {
-    return {
-      viewInstance: null,
-    };
-  },
   mounted() {
-    this.$props.view.$el.appendTo(this.$el);
+    this.$props.view.render().$el.appendTo(this.$el);
   },
   beforeDestory() {
     if (this.$props.view) {

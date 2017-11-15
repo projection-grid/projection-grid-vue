@@ -24,10 +24,10 @@ export default {
         .create({
           tableClasses: this.config.tableClasses,
           dataSource: this.config.dataSource,
-        }).gridView.render(),
+        }).gridView,
     };
   },
-  destoryed() {
+  beforeDestory() {
     this.gridView.remove();
   },
 };
