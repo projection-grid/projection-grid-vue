@@ -27,10 +27,8 @@ export default {
         }).gridView.render(),
     };
   },
-  beforeDestory() {
-    if (this.gridView) {
-      this.gridView.remove();
-    }
+  destoryed() {
+    this.gridView.remove();
   },
 };
 </script>

@@ -29,16 +29,5 @@ describe('VueProjectionGrid', () => {
     }).isVueInstance()).toBeTruthy();
   });
 
-  test('should render table with correct css classes', () => {
-    const grid = mount(VueProjectionGrid, {
-      propsData: {
-        config: mockConfig,
-      },
-    });
-
-    setTimeout(() => {
-      expect(grid.find('.table').hasClass('table-bordered')).toBe(true);
-      done();
-    });
-  });
+  // todo: test destory
 });
