@@ -1,10 +1,11 @@
+/* eslint-disable */
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/index.vue',
+    './src/projection-grid.vue',
   ],
   output: {
     path: __dirname + '/dist',

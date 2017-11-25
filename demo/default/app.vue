@@ -1,31 +1,41 @@
 <template>
   <div>
     <h3>This is vue projection grid - basic demo</h3>
-    <grid :config="config" />
+    <input class="form-control" v-model.lazy="icon" />
+    <projection-grid :config="config" :projections="projections" />
   </div>
 </template>
 
 <script>
-import VueProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
+import ProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
+import { customCSS } from './projections/custom-css';
+import { iconedCell } from './projections/iconed-cell';
 
 import people from './people.json';
 
 export default {
-  components: {
-    grid: VueProjectionGrid,
-  },
+  components: { ProjectionGrid },
   data() {
     return {
       config: {
-        tableClasses: ['table', 'table-bordered'],
-        dataSource: {
-          type: 'memory',
-          data: people.value,
-          primaryKey: 'UserName',
-        },
+        records: people.value,
+        columns: [
+          { name: 'UserName' },
+          { name: 'FirstName' },
+          { name: 'LastName' },
+        ],
+        primaryKey: 'UserName',
       },
+      icon: 'heart-empty',
     };
+  },
+  computed: {
+    projections() {
+      return [
+        customCSS({ tableClass: 'table table-bordered' }),
+        iconedCell({ icon: this.icon }),
+      ];
+    },
   },
 };
 </script>
-
