@@ -5,13 +5,13 @@ export class Normalizer {
   normalize({ primaryKey }) {
     return {
       primaryKey: _.property(primaryKey),
-      composeTD({ column, record }) {
+      composeTD({ column: { name }, record }) {
         return {
-          key: column.name,
+          key: name,
           attributes: {},
           content: {
             Component: DefaultCell,
-            props: { text: record[column.name] },
+            props: { text: record[name] },
           },
         };
       },

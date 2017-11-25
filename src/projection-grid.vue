@@ -3,7 +3,7 @@
 </template>
 <script>
 import Renderer from './renderer.vue';
-import { ProjectionGridCore } from './projection-grid-core';
+import { ProjectionGridCore } from './mock/projection-grid-core';
 import { Normalizer } from './normalizer';
 
 export default {

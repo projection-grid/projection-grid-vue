@@ -1,9 +1,9 @@
 <template>
   <table v-bind="model.attributes">
-    <tbody v-for="tbody in model.tbodies" v-bind="tbody.attributes">
-      <tr v-for="tr in tbody.trs" v-bind="addKey(tr.attributes, tr.key)">
-        <td v-for="td in tr.tds" v-bind="addKey(td.attributes, td.key)">
-          <component :is="td.content.Component" v-bind="td.content.props"></component>
+    <tbody v-for="tbody in model.tbodies" v-bind="attributesOf(tbody)">
+      <tr v-for="tr in tbody.trs" v-bind="attributesOf(tr)">
+        <td v-for="td in tr.tds" v-bind="attributesOf(td)">
+          <component :is="td.content.Component" v-bind="td.content.props" />
         </td>
       </tr>
     </tbody>
@@ -11,26 +11,15 @@
 </template>
 
 <script>
-import DefaultCell from './default-cell.vue';
-
-function addKey(attributes, key) {
-  return Object.assign({ key }, attributes);
-}
-
 export default {
-  slots() {
-    return this.$props.model.context.slots;
-  },
   props: ['model', 'options'],
-  data() {
-    return {
-      column: { name: 'a' },
-      record: { a: 'Hello' },
-      addKey,
-    };
-  },
-  components: {
-    DefaultCell,
+  methods: {
+    attributesOf({ attributes, key }) {
+      if (key === null || typeof key === 'undefined') {
+        return attributes;
+      }
+      return Object.assign({ key }, attributes);
+    },
   },
 };
 </script>

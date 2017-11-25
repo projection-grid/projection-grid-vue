@@ -24,6 +24,7 @@ export class ProjectionGridCore {
           colgroups: null,
           thead: null,
           tbodies: [{
+            key: 'default',
             attributes: {},
             trs: config.records.map(record => config.composeTR({
               record,
@@ -46,7 +47,7 @@ export class ProjectionGridCore {
         };
       },
 
-      composeTD({ column /* , record, config */}) {
+      composeTD({ column /* , record, config */}/* , context */) {
         return {
           key: column.name,
           attributes: {},
