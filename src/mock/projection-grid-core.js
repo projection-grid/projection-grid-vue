@@ -1,59 +1,23 @@
-export class ProjectionGridCore {
-  constructor({ normalizer }) {
-    this.normalizer = normalizer;
-  }
+import { coreDefault } from './core-default';
 
+export class ProjectionGridCore {
   compose({ config: userConfig, projections = [] }) {
-    const config = projections.reduce(
-      (projConfig, { reducer, options }) => reducer(projConfig, options),
-      this.normalize(userConfig)
-    );
+    function resolve(config, projection) {
+      if (projection instanceof Array) {
+        return projection.reduce(resolve, config);
+      }
+      if (typeof projection.reducer === 'function') {
+        return projection.reducer(config, projection.options);
+      }
+      if (typeof projection === 'function') {
+        return projection(config);
+      }
+      return config;
+    }
+
+    const config = resolve(userConfig, [coreDefault, ...projections]);
     const context = {};
 
     return Object.assign(config.composeTABLE({ config }, context), { context });
-  }
-
-  normalize(userConfig) {
-    return Object.assign({
-      records: userConfig.records,
-      columns: userConfig.columns.map(({ name }) => ({ name })),
-      composeTABLE({ config }, context) {
-        return {
-          attributes: {},
-          caption: null,
-          colgroups: null,
-          thead: null,
-          tbodies: [{
-            key: 'default',
-            attributes: {},
-            trs: config.records.map(record => config.composeTR({
-              record,
-              config,
-            }, context)),
-          }],
-          tfoot: null,
-        };
-      },
-
-      composeTR({ record, config }, context) {
-        return {
-          key: config.primaryKey(record),
-          attributes: {},
-          tds: config.columns.map(column => config.composeTD({
-            column,
-            record,
-            config,
-          }, context)),
-        };
-      },
-
-      composeTD({ column /* , record, config */}/* , context */) {
-        return {
-          key: column.name,
-          attributes: {},
-          content: null,
-        };
-      },
-    }, this.normalizer.normalize(userConfig));
   }
 }

@@ -4,23 +4,25 @@
 <script>
 import Renderer from './renderer.vue';
 import { ProjectionGridCore } from './mock/projection-grid-core';
-import { Normalizer } from './normalizer';
+import { vueDefault } from './projections/vue-default';
 
 export default {
   created() {
-    this.core = new ProjectionGridCore({
-      normalizer: new Normalizer(),
-    });
+    this.core = new ProjectionGridCore();
   },
 
   components: { Renderer },
   props: ['config', 'projections', 'renderer'],
   computed: {
     renderModel() {
-      return this.core.compose({
+      const model = this.core.compose({
         config: this.config,
-        projections: this.projections,
+        projections: [
+          vueDefault,
+        ].concat(this.projections),
       });
+
+      return model;
     },
   },
 };

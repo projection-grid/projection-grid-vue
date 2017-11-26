@@ -43,8 +43,13 @@
 <script>
 import _ from 'underscore';
 import ProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
+import { customColumn } from './projections/custom-column';
 import { customCSS } from './projections/custom-css';
 import { iconedCell } from './projections/iconed-cell';
+
+import UserNameCell from './columns/user-name-cell.vue';
+import FirstNameCell from './columns/first-name-cell.vue';
+import CounterCell from './columns/counter-cell.vue';
 
 import people from './people.json';
 
@@ -52,15 +57,7 @@ export default {
   components: { ProjectionGrid },
   data() {
     return {
-      config: {
-        records: people.value,
-        columns: [
-          { name: 'UserName' },
-          { name: 'FirstName' },
-          { name: 'LastName' },
-        ],
-        primaryKey: 'UserName',
-      },
+      records: _.map(people.value, record => _.defaults({ Count: 0 }, record)),
       icon: 'heart-empty',
       isBordered: false,
       isStriped: false,
@@ -68,8 +65,40 @@ export default {
     };
   },
   computed: {
+    config() {
+      return {
+        records: this.records,
+        columns: [
+          { name: 'UserName', Component: UserNameCell },
+          { name: 'FirstName', Component: FirstNameCell },
+          'LastName',
+          {
+            name: 'Count',
+            Component: CounterCell,
+            events: {
+              inc: ({
+                record,
+                config: { primaryKey },
+              }) => {
+                const key = primaryKey(record);
+                this.records = _.map(this.records, (rec) => {
+                  if (primaryKey(rec) === key) {
+                    return _.defaults({
+                      Count: rec.Count + 1,
+                    }, rec);
+                  }
+                  return rec;
+                });
+              },
+            },
+          },
+        ],
+        primaryKey: 'UserName',
+      };
+    },
     projections() {
       return [
+        customColumn,
         customCSS({
           tableClass: _.compact([
             'table',
