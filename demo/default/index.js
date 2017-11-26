@@ -1,3 +1,5 @@
+import 'bootstrap-webpack'; // eslint-disable-line
+
 import Vue from 'vue';
 import App from './app.vue';
 

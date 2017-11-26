@@ -1,31 +1,25 @@
 import { mount } from 'vue-test-utils';
-import VueProjectionGrid from '../src/index.vue';
+import ProjectionGrid from '../src/projection-grid.vue';
 
-const mockConfig = {
-  tableClasses: ['table', 'table-bordered'],
-  dataSource: {
-    type: 'memory',
-    data: [{ UserName: 'abc' }],
-    primaryKey: 'UserName',
-  },
+/* global expect */
+const config = {
+  records: [{ UserName: 'abc' }],
+  primaryKey: 'UserName',
+  columns: [{ name: 'UserName' }],
 };
 
 describe('VueProjectionGrid', () => {
   test('should not throw any errors', () => {
     expect(() => {
-      mount(VueProjectionGrid, {
-        propsData: {
-          config: mockConfig,
-        },
+      mount(ProjectionGrid, {
+        propsData: { config },
       }).not.toThrow();
     });
   });
 
   test('is a Vue instance', () => {
-    expect(mount(VueProjectionGrid, {
-      propsData: {
-        config: mockConfig,
-      },
+    expect(mount(ProjectionGrid, {
+      propsData: { config },
     }).isVueInstance()).toBeTruthy();
   });
 
