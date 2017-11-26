@@ -62,7 +62,7 @@ export default {
         columns: [
           { name: 'UserName', Component: UserNameCell },
           { name: 'FirstName', Component: FirstNameCell },
-          { name: 'LastName' },
+          'LastName',
           {
             name: 'Count',
             Component: CounterCell,
@@ -84,7 +84,7 @@ export default {
   computed: {
     projections() {
       return [
-        customColumn(),
+        customColumn,
         customCSS({
           tableClass: _.compact([
             'table',

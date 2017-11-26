@@ -18,7 +18,7 @@ export default {
       const model = this.core.compose({
         config: this.config,
         projections: [
-          vueDefault(),
+          vueDefault,
         ].concat(this.projections),
       });
 

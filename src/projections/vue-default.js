@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import DefaultCell from './default-cell.vue';
 
-function reducer(config) {
+export function vueDefault(config) {
   return _.defaults({
     primaryKey: _.property(config.primaryKey),
     composeTD(options) {
@@ -15,8 +15,4 @@ function reducer(config) {
       }, config.composeTD(options));
     },
   }, config);
-}
-
-export function vueDefault(options) {
-  return { reducer, options };
 }

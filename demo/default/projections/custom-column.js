@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-function reducer(config) {
+export function customColumn(config) {
   const configNew = _.defaults({
     columns: _.map(config.columns, col => _.defaults({
       attributes: _.mapObject(
@@ -39,8 +39,4 @@ function reducer(config) {
   }, config);
 
   return configNew;
-}
-
-export function customColumn(options) {
-  return { reducer, options };
 }

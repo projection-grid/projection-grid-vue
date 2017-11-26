@@ -1,6 +1,18 @@
+import _ from 'underscore';
+
+function defaultColumns({ records, columns }) {
+  return _.map(columns || _.keys(_.first(records)), (col) => {
+    if (_.isString(col)) {
+      return { name: col };
+    }
+    return col;
+  });
+}
+
 function reducer(configIn) {
-  return Object.assign({
+  const configOut = _.defaults({
     primaryKey: obj => obj[configIn.primaryKey],
+    columns: defaultColumns(configIn),
     composeTABLE({ config }, context) {
       return {
         attributes: {},
@@ -39,8 +51,12 @@ function reducer(configIn) {
       };
     },
   }, configIn);
+
+  return configOut;
 }
 
 export function coreDefault(options) {
   return { reducer, options };
 }
+
+coreDefault.reducer = reducer;
