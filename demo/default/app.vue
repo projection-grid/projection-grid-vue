@@ -57,8 +57,17 @@ export default {
   components: { ProjectionGrid },
   data() {
     return {
-      config: {
-        records: people.value,
+      records: _.map(people.value, record => _.defaults({ Count: 0 }, record)),
+      icon: 'heart-empty',
+      isBordered: false,
+      isStriped: false,
+      isHover: false,
+    };
+  },
+  computed: {
+    config() {
+      return {
+        records: this.records,
         columns: [
           { name: 'UserName', Component: UserNameCell },
           { name: 'FirstName', Component: FirstNameCell },
@@ -67,21 +76,26 @@ export default {
             name: 'Count',
             Component: CounterCell,
             events: {
-              inc({ record }) {
-                window.console.log('inc', record);
+              inc: ({
+                record,
+                config: { primaryKey },
+              }) => {
+                const key = primaryKey(record);
+                this.records = _.map(this.records, (rec) => {
+                  if (primaryKey(rec) === key) {
+                    return _.defaults({
+                      Count: rec.Count + 1,
+                    }, rec);
+                  }
+                  return rec;
+                });
               },
             },
           },
         ],
         primaryKey: 'UserName',
-      },
-      icon: 'heart-empty',
-      isBordered: false,
-      isStriped: false,
-      isHover: false,
-    };
-  },
-  computed: {
+      };
+    },
     projections() {
       return [
         customColumn,

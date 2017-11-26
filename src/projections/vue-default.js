@@ -3,7 +3,6 @@ import DefaultCell from './default-cell.vue';
 
 export function vueDefault(config) {
   return _.defaults({
-    primaryKey: _.property(config.primaryKey),
     composeTD(options) {
       const { column: { name }, record } = options;
       return _.defaults({
