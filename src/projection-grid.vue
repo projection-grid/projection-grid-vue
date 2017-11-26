@@ -1,8 +1,8 @@
 <template>
-  <renderer :options="renderer" :model="renderModel"/>
+  <renderer :options="renderer" :table="table" :context="context"/>
 </template>
 <script>
-import Renderer from './renderer.vue';
+import Renderer from './renderer/index.vue';
 import { ProjectionGridCore } from './mock/projection-grid-core';
 import { vueDefault } from './projections/vue-default';
 
@@ -23,6 +23,14 @@ export default {
       });
 
       return model;
+    },
+
+    table() {
+      return this.renderModel.table;
+    },
+
+    context() {
+      return this.renderModel.context;
     },
   },
 };
