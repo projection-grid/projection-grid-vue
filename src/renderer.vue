@@ -3,7 +3,7 @@
     <tbody v-for="tbody in model.tbodies" v-bind="attributesOf(tbody)">
       <tr v-for="tr in tbody.trs" v-bind="attributesOf(tr)">
         <td v-for="td in tr.tds" v-bind="attributesOf(td)">
-          <component :is="td.content.Component" v-bind="td.content.props" />
+          <component :is="td.content.Component" v-bind="td.content.props" v-on="td.content.events"/>
         </td>
       </tr>
     </tbody>

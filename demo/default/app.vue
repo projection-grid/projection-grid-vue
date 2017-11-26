@@ -43,8 +43,13 @@
 <script>
 import _ from 'underscore';
 import ProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
+import { customColumn } from './projections/custom-column';
 import { customCSS } from './projections/custom-css';
 import { iconedCell } from './projections/iconed-cell';
+
+import UserNameCell from './columns/user-name-cell.vue';
+import FirstNameCell from './columns/first-name-cell.vue';
+import CounterCell from './columns/counter-cell.vue';
 
 import people from './people.json';
 
@@ -55,9 +60,18 @@ export default {
       config: {
         records: people.value,
         columns: [
-          { name: 'UserName' },
-          { name: 'FirstName' },
+          { name: 'UserName', Component: UserNameCell },
+          { name: 'FirstName', Component: FirstNameCell },
           { name: 'LastName' },
+          {
+            name: 'Count',
+            Component: CounterCell,
+            events: {
+              inc({ record }) {
+                window.console.log('inc', record);
+              },
+            },
+          },
         ],
         primaryKey: 'UserName',
       },
@@ -70,6 +84,7 @@ export default {
   computed: {
     projections() {
       return [
+        customColumn(),
         customCSS({
           tableClass: _.compact([
             'table',
