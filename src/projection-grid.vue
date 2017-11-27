@@ -19,7 +19,7 @@ export default {
         config: this.config,
         projections: [
           vueDefault,
-        ].concat(this.projections),
+        ].concat(this.projections || []),
       });
       return model;
     },

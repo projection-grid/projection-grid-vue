@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils';
-import ProjectionGrid from '../src/projection-grid.vue';
+import ProjectionGrid from '../src/index';
 
 /* global expect */
 const config = {

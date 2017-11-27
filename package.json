@@ -7,7 +7,7 @@
     "build": "webpack",
     "test": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "demo": "webpack && cd demo/default && webpack",
-    "dev": "cd demo/default && webpack-dev-server --hot --config ./webpack.dev.config.js",
+    "dev": "cd demo/default && webpack-dev-server --hot",
     "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
   },
   "repository": {
@@ -88,6 +88,9 @@
       "^.+\\.js$": "./node_modules/babel-jest",
       ".*\\.(vue)$": "./node_modules/vue-jest"
     },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!projection-grid-core)"
+    ],
     "snapshotSerializers": [
       "./node_modules/jest-serializer-vue"
     ],
