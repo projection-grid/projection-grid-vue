@@ -1,5 +1,5 @@
 <template>
-  <renderer :options="renderer" :table="table" :context="context"/>
+  <renderer :options="renderer" :table="table"/>
 </template>
 <script>
 import Renderer from './renderer/index.vue';
@@ -21,16 +21,11 @@ export default {
           vueDefault,
         ].concat(this.projections),
       });
-
       return model;
     },
 
     table() {
       return this.renderModel.table;
-    },
-
-    context() {
-      return this.renderModel.context;
     },
   },
 };

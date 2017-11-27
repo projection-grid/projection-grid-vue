@@ -1,10 +1,10 @@
 <template>
-  <span>
-    <component :is="content.Component" v-bind="content.props" v-on="content.events"/>
+  <span v-if="isFinite(record.Count)">
+    <span>{{record.Count}}</span>
     <button class="btn btn-default" @click="() => this.$emit('inc')">Inc</button>
   </span>
 </template>
 
 <script>
-export default { props: ['content'] };
+export default { props: ['record', 'content'] };
 </script>

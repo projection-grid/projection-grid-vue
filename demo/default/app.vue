@@ -27,6 +27,7 @@
           <div class="form-group">
             <label>Cell Icon:</label>
             <select class="form-control" v-model="icon">
+              <option value="">None</option>
               <option value="ok">OK</option>
               <option value="pencil">Pencil</option>
               <option value="heart">Heart</option>
@@ -46,6 +47,9 @@ import ProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
 import { customColumn } from './projections/custom-column';
 import { customCSS } from './projections/custom-css';
 import { iconedCell } from './projections/iconed-cell';
+// import { dupRow } from './projections/dup-row';
+// import { dupColumn } from './projections/dup-column';
+import { treeRows } from './projections/tree-rows';
 
 import UserNameCell from './columns/user-name-cell.vue';
 import FirstNameCell from './columns/first-name-cell.vue';
@@ -58,7 +62,7 @@ export default {
   data() {
     return {
       records: _.map(people.value, record => _.defaults({ Count: 0 }, record)),
-      icon: 'heart-empty',
+      icon: '',
       isBordered: false,
       isStriped: false,
       isHover: false,
@@ -72,6 +76,7 @@ export default {
           { name: 'UserName', Component: UserNameCell },
           { name: 'FirstName', Component: FirstNameCell },
           'LastName',
+          'Email',
           {
             name: 'Count',
             Component: CounterCell,
@@ -99,6 +104,7 @@ export default {
     projections() {
       return [
         customColumn,
+        // headCompoent(MyTableHeader),
         customCSS({
           tableClass: _.compact([
             'table',
@@ -108,6 +114,16 @@ export default {
           ]).join(' '),
         }),
         iconedCell({ icon: this.icon }),
+        // dupRow,
+        // dupColumn,
+        treeRows({
+          getSubrecords(record) {
+            if (_.isArray(record.Emails)) {
+              return _.map(record.Emails, Email => ({ Email }));
+            }
+            return [];
+          },
+        }),
       ];
     },
   },
