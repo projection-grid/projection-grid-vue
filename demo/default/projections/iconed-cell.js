@@ -3,12 +3,12 @@ import IconedCell from './iconed-cell.vue';
 
 function reducer(config, { icon }) {
   return _.defaults({
-    composeTD(args) {
+    composeTds(args) {
       const {
         key,
         attributes,
         content,
-      } = config.composeTD(args);
+      } = config.composeTds(args);
 
       return {
         key,

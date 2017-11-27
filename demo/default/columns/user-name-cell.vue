@@ -1,6 +1,6 @@
 <template>
   <b>
-    <component :is="content.Component" v-bind="content.props" />
+    <component :is="content.Component" v-bind="content.props" v-on="content.events"/>
   </b>
 </template>
 <script>

@@ -16,8 +16,7 @@ export class ProjectionGridCore {
     }
 
     const config = resolve(userConfig, [coreDefault, ...projections]);
-    const context = {};
 
-    return Object.assign(config.composeTABLE({ config }, context), { context });
+    return { table: config.composeTable({ config }) };
   }
 }

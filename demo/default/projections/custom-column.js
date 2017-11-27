@@ -12,8 +12,8 @@ export function customColumn(config) {
       events: {},
     })),
 
-    composeTD(options) {
-      const td = config.composeTD(options);
+    composeTds(options) {
+      const td = config.composeTds(options);
       const { attributes, content } = td;
       const { column } = options;
 

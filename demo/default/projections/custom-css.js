@@ -2,8 +2,8 @@ import _ from 'underscore';
 
 function reducer(config, { tableClass }) {
   return _.defaults({
-    composeTABLE({ config: cfg }) {
-      const model = config.composeTABLE({ config: cfg });
+    composeTable({ config: cfg }) {
+      const model = config.composeTable({ config: cfg });
 
       return _.defaults({
         attributes: { class: tableClass },
