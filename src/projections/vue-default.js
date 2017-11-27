@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import DefaultComponent from './default-cell.vue';
+import DefaultComponent from './default-content.vue';
 
 export function vueDefault(config) {
   return _.defaults({

@@ -1,7 +1,7 @@
-/* eslint-disable */
+/* eslint-env node */
+const path = require('path');
+const config = require('./webpack.config.js');
 
-var config = require('./webpack.config.js');
-
-config.resolve.alias.VueProjectionGrid = '../../src/projection-grid.vue';
+config.resolve.alias['vue-projection-grid'] = path.join(__dirname, '../../src');
 
 module.exports = config;

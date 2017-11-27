@@ -74,6 +74,7 @@
     "js-data": "2.9.0",
     "knockout": "3.4.0",
     "projection-grid": "^0.1.7",
+    "projection-grid-core": "^0.0.5",
     "underscore": "1.8.3",
     "vue": "^2.4.4"
   },

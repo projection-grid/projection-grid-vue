@@ -2,8 +2,8 @@
   <renderer :options="renderer" :table="table"/>
 </template>
 <script>
+import ProjectionGridCore from 'projection-grid-core';
 import Renderer from './renderer/index.vue';
-import { ProjectionGridCore } from './mock/projection-grid-core';
 import { vueDefault } from './projections/vue-default';
 
 export default {
