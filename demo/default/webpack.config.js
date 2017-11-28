@@ -52,7 +52,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue-projection-grid': path.join(__dirname, '../../dist/index'),
+      'vue-projection-grid': path.join(__dirname, '../../src/index'),
+      'projection-grid-core': 'projection-grid-core/src/index',
     },
   },
 };
