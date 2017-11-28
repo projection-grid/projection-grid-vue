@@ -1,10 +1,11 @@
 <template>
-  <b>
-    <component :is="content.Component" v-bind="content.props" v-on="content.events"/>
-  </b>
+  <b><grid-content v-bind="content"/></b>
 </template>
 <script>
+import { GridContent } from 'vue-projection-grid'; // eslint-disable-line
+
 export default {
   props: ['column', 'record', 'config', 'content'],
+  components: { GridContent },
 };
 </script>

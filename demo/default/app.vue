@@ -43,8 +43,7 @@
 
 <script>
 import _ from 'underscore';
-import ProjectionGrid from 'VueProjectionGrid'; // eslint-disable-line
-import { customColumn } from './projections/custom-column';
+import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
 import { iconedCell } from './projections/iconed-cell';
 // import { dupRow } from './projections/dup-row';
@@ -80,14 +79,20 @@ export default {
           {
             name: 'Count',
             Component: CounterCell,
+            attributes: {
+              'data-key': ({
+                record,
+                config: { primaryKey },
+              }) => record[primaryKey],
+            },
             events: {
               inc: ({
                 record,
                 config: { primaryKey },
               }) => {
-                const key = primaryKey(record);
+                const key = record[primaryKey];
                 this.records = _.map(this.records, (rec) => {
-                  if (primaryKey(rec) === key) {
+                  if (rec[primaryKey] === key) {
                     return _.defaults({
                       Count: rec.Count + 1,
                     }, rec);
@@ -103,7 +108,6 @@ export default {
     },
     projections() {
       return [
-        customColumn,
         // headCompoent(MyTableHeader),
         customCSS({
           tableClass: _.compact([

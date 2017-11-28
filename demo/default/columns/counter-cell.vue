@@ -1,10 +1,15 @@
 <template>
   <span v-if="isFinite(record.Count)">
-    <span>{{record.Count}}</span>
+    <grid-content v-bind="content"/>
     <button class="btn btn-default" @click="() => this.$emit('inc')">Inc</button>
   </span>
 </template>
 
 <script>
-export default { props: ['record', 'content'] };
+import { GridContent } from 'vue-projection-grid'; // eslint-disable-line
+
+export default {
+  props: ['record', 'content'],
+  components: { GridContent },
+};
 </script>
