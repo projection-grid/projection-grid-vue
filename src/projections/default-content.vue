@@ -1,5 +1,5 @@
 <template>
-  <span>{{this.text}}</span>
+  <span v-on="$listeners">{{this.text}}</span>
 </template>
 <script>
 export default { props: ['text'] };

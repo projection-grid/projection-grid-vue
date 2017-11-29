@@ -45,7 +45,7 @@
 import _ from 'underscore';
 import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
-import { iconedCell } from './projections/iconed-cell';
+// import { iconedCell } from './projections/iconed-cell';
 // import { dupRow } from './projections/dup-row';
 // import { dupColumn } from './projections/dup-column';
 import { treeRows } from './projections/tree-rows';
@@ -75,7 +75,12 @@ export default {
           { name: 'UserName', Component: UserNameCell },
           { name: 'FirstName', Component: FirstNameCell },
           'LastName',
-          'Email',
+          {
+            name: 'Email',
+            events: {
+              click: ({ record }) => window.console.log(record),
+            },
+          },
           {
             name: 'Count',
             Component: CounterCell,
@@ -117,7 +122,7 @@ export default {
             this.isHover && 'table-hover',
           ]).join(' '),
         }),
-        iconedCell({ icon: this.icon }),
+        // iconedCell({ icon: this.icon }),
         // dupRow,
         // dupColumn,
         treeRows({
