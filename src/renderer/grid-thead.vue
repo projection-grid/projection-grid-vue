@@ -5,9 +5,11 @@
 </template>
 <script>
 import GridTr from './grid-tr.vue';
+import { attributes } from './util';
 
 export default {
-  props: ['attributes', 'trs'],
+  props: ['props', 'styles', 'classes', 'events', 'trs'],
+  computed: { attributes },
   components: { GridTr },
 };
 </script>

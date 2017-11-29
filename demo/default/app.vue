@@ -46,7 +46,7 @@ import _ from 'underscore';
 import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
 // import { iconedCell } from './projections/iconed-cell';
-// import { dupRow } from './projections/dup-row';
+import { dupRow } from './projections/dup-row';
 // import { dupColumn } from './projections/dup-column';
 import { treeRows } from './projections/tree-rows';
 
@@ -72,39 +72,71 @@ export default {
       return {
         records: this.records,
         columns: [
-          { name: 'UserName', Component: UserNameCell },
-          { name: 'FirstName', Component: FirstNameCell },
+          {
+            name: 'UserName',
+            col: {
+              props: ({ column }) => ({ 'data-name': column.name }),
+              classes: () => ['user-name'],
+            },
+            td: {
+              content: (options, content) => ({
+                Component: UserNameCell,
+                props: _.defaults({ content }, options),
+              }),
+              styles: () => ({
+                background: 'lightcyan',
+              }),
+              classes: () => ['user-name'],
+            },
+          },
+          {
+            name: 'FirstName',
+            th: {
+              events: ({ column }) => ({
+                click() {
+                  window.console.log(`Clicking column header "${column.name}"`);
+                },
+              }),
+            },
+            td: {
+              content: {
+                Component: _.constant(FirstNameCell),
+                props: ({ column, record }) => ({ column, record }),
+              },
+            },
+          },
           'LastName',
           {
             name: 'Email',
-            events: {
-              click: ({ record }) => window.console.log(record),
+            td: {
+              events: ({ record }) => ({
+                click: () => window.console.log(record),
+              }),
             },
           },
           {
             name: 'Count',
-            Component: CounterCell,
-            attributes: {
-              'data-key': ({
-                record,
-                config: { primaryKey },
-              }) => record[primaryKey],
-            },
-            events: {
-              inc: ({
-                record,
-                config: { primaryKey },
-              }) => {
-                const key = record[primaryKey];
-                this.records = _.map(this.records, (rec) => {
-                  if (rec[primaryKey] === key) {
-                    return _.defaults({
-                      Count: rec.Count + 1,
-                    }, rec);
-                  }
-                  return rec;
-                });
-              },
+            td: {
+              props: ({ record, config: { primaryKey } }, props) => _.defaults({
+                'data-key': record[primaryKey],
+              }, props),
+              content: ({ record, config }, content) => ({
+                Component: CounterCell,
+                props: { content, record },
+                events: {
+                  inc: () => {
+                    const key = record[config.primaryKey];
+                    this.records = _.map(this.records, (rec) => {
+                      if (rec[config.primaryKey] === key) {
+                        return _.defaults({
+                          Count: rec.Count + 1,
+                        }, rec);
+                      }
+                      return rec;
+                    });
+                  },
+                },
+              }),
             },
           },
         ],
@@ -120,10 +152,10 @@ export default {
             this.isBordered && 'table-bordered',
             this.isStriped && 'table-striped',
             this.isHover && 'table-hover',
-          ]).join(' '),
+          ]),
         }),
         // iconedCell({ icon: this.icon }),
-        // dupRow,
+        dupRow,
         // dupColumn,
         treeRows({
           getSubrecords(record) {

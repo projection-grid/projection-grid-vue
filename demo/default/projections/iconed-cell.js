@@ -5,9 +5,9 @@ function reducer(config, { icon }) {
   return _.defaults({
     composeTds(args) {
       return _.chain(config.composeTds(args))
-        .map(({ key, attributes, content }) => ({
+        .map(({ key, props, content }) => ({
           key,
-          attributes,
+          props,
           content: {
             Component: IconedCell,
             props: {

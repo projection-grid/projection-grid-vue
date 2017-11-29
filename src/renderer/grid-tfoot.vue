@@ -1,13 +1,15 @@
 <template>
-  <tfoot v-bind="attributes">
+  <tfoot v-bind="attributes" v-on="events">
     <grid-tr v-for="tr in trs" v-bind="tr" :key="tr.key"/>
   </tfoot>
 </template>
 <script>
 import GridTr from './grid-tr.vue';
+import { attributes } from './util';
 
 export default {
-  props: ['attributes', 'trs'],
+  props: ['props', 'styles', 'classes', 'events', 'trs'],
+  computed: { attributes },
   components: { GridTr },
 };
 </script>
