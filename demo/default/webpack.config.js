@@ -3,7 +3,9 @@ const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
-  entry: './index.js',
+  entry: {
+    default: './index.js',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js',
