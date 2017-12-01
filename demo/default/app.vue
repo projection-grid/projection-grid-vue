@@ -112,7 +112,14 @@ export default {
               }, events),
             },
             td: {
-              content: { Component: FirstNameCell },
+              content: {
+                Component: FirstNameCell,
+                events: (events, { record, column: { name } }) => _.defaults({
+                  click() {
+                    window.console.log(`Clicking name "${record[name]}"`);
+                  },
+                }, events),
+              },
             },
           },
           'LastName',

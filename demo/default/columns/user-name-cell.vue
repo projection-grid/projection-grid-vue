@@ -1,5 +1,5 @@
 <template>
-  <b><grid-content v-bind="content"/></b>
+  <b v-on="$listeners"><grid-content v-bind="content"/></b>
 </template>
 <script>
 import { GridContent } from 'vue-projection-grid'; // eslint-disable-line
