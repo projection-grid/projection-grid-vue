@@ -1,5 +1,5 @@
 <template>
-  <component :is="Component" v-bind="attributes" v-on="events" />
+  <component :is="Component" v-bind="attributes" v-on="events"/>
 </template>
 <script>
 import { attributes } from './util';

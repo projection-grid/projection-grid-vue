@@ -48,7 +48,7 @@ import { customCSS } from './projections/custom-css';
 // import { iconedCell } from './projections/iconed-cell';
 // import { dupRow } from './projections/dup-row';
 // import { dupColumn } from './projections/dup-column';
-// import { treeRows } from './projections/tree-rows';
+import { treeRows } from './projections/tree-rows';
 
 import UserNameCell from './columns/user-name-cell.vue';
 import FirstNameCell from './columns/first-name-cell.vue';
@@ -198,14 +198,14 @@ export default {
         // iconedCell({ icon: this.icon }),
         // dupRow,
         // dupColumn,
-        // treeRows({
-        //   getSubrecords(record) {
-        //     if (_.isArray(record.Emails)) {
-        //       return _.map(record.Emails, Email => ({ Email }));
-        //     }
-        //     return [];
-        //   },
-        // }),
+        treeRows({
+          getSubrecords(record) {
+            if (_.isArray(record.Emails)) {
+              return _.map(record.Emails, Email => ({ Email }));
+            }
+            return [];
+          },
+        }),
       ];
     },
   },

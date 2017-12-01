@@ -33,6 +33,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "bootstrap": "^3.3.7",
+    "const": "^1.0.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "eslint": "^4.11.0",
