@@ -1,17 +1,17 @@
 import _ from 'underscore';
 
-function reducer(config, { tableClass }) {
-  return _.defaults({
+function decorate({ composeTable }, config, { tableClass }) {
+  return {
     composeTable({ config: cfg }) {
-      const table = config.composeTable({ config: cfg });
+      const table = composeTable({ config: cfg });
 
       return _.defaults({
         classes: tableClass,
       }, table);
     },
-  }, config);
+  };
 }
 
-export function customCSS(options) {
-  return { reducer, options };
+export function customCSS(config) {
+  return { decorate, config };
 }
