@@ -66,11 +66,13 @@ export default {
       isStriped: false,
       isHover: false,
       sortKey: '',
+      options: ['a', 'b'],
     };
   },
   computed: {
     config() {
       return {
+        classes: ['projection-grid'],
         caption: {
           events: {
             click() {
@@ -90,22 +92,22 @@ export default {
             name: 'UserName',
             sorting: this.sortKey === 'UserName' ? 'asc' : true,
             col: {
-              props: (props, { column }) => _.defaults({ 'data-name': column.name }, props),
+              props: ({ column }, props) => _.defaults({ 'data-name': column.name }, props),
               classes: () => ['user-name'],
             },
             td: {
               content: { Component: UserNameCell },
-              styles: () => ({
+              styles: {
                 background: 'lightcyan',
-              }),
-              classes: () => ['user-name'],
+              },
+              classes: ['user-name'],
             },
           },
           {
             name: 'FirstName',
             sorting: this.sortKey === 'FirstName' ? 'asc' : true,
             th: {
-              events: (events, { column }) => _.defaults({
+              events: ({ column }, events) => _.defaults({
                 click() {
                   window.console.log(`Clicking column header "${column.name}"`);
                 },
@@ -114,7 +116,7 @@ export default {
             td: {
               content: {
                 Component: FirstNameCell,
-                events: (events, { record, column: { name } }) => _.defaults({
+                events: ({ record, column: { name } }, events) => _.defaults({
                   click() {
                     window.console.log(`Clicking name "${record[name]}"`);
                   },
@@ -126,14 +128,14 @@ export default {
           {
             name: 'Email',
             td: {
-              events: (events, { record }) => _.defaults({
+              events: ({ record }, events) => _.defaults({
                 click: () => window.console.log(record),
               }, events),
             },
           },
           {
             name: 'Count',
-            td: ({ props, content }, { record, table: { primaryKey } }) => ({
+            td: ({ record, table: { primaryKey } }, { props, content }) => ({
               props: _.defaults({
                 'data-key': record[primaryKey],
               }, props),
@@ -162,6 +164,23 @@ export default {
           handleResort: (key) => {
             this.records = _.sortBy(this.records, key);
             this.sortKey = key;
+          },
+        },
+        colgroup: {
+          classes: ['my-colgroup'],
+        },
+        tbody: {
+          tr: {
+            classes: ['table-row'],
+            props: ({ record, table: { primaryKey } }) => ({
+              'data-key': record[primaryKey],
+            }),
+            td: {
+              classes: ['cell'],
+              props: ({ record, column: { name } }) => ({
+                title: record[name],
+              }),
+            },
           },
         },
       };

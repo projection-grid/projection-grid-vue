@@ -2,12 +2,12 @@ import _ from 'underscore';
 
 function decorate({ composeTable }, config, { tableClass }) {
   return {
-    composeTable({ config: cfg }) {
-      const table = composeTable({ config: cfg });
+    composeTable(table) {
+      const model = composeTable(table);
 
       return _.defaults({
-        classes: tableClass,
-      }, table);
+        classes: _.union(model.classes, tableClass),
+      }, model);
     },
   };
 }
