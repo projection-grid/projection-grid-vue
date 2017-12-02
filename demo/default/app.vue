@@ -36,14 +36,14 @@
           </div>
         </form>
       </div>
-      <projection-grid :config="config" :projections="projections" />
+      <projection-grid-vue :config="config" :projections="projections"/>
     </div>
   </div>
 </template>
 
 <script>
 import _ from 'underscore';
-import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
+import ProjectionGridVue from 'projection-grid-vue'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
 // import { iconedCell } from './projections/iconed-cell';
 // import { dupRow } from './projections/dup-row';
@@ -57,7 +57,7 @@ import CounterCell from './columns/counter-cell.vue';
 import people from './people.json';
 
 export default {
-  components: { ProjectionGrid },
+  components: { ProjectionGridVue },
   data() {
     return {
       records: _.map(people.value, record => _.defaults({ Count: 0 }, record)),

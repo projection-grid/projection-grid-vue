@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { GridContent } from 'vue-projection-grid'; // eslint-disable-line
+import { GridContent } from 'projection-grid-vue'; // eslint-disable-line
 
 export default {
   props: ['record', 'content'],
