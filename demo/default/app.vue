@@ -201,7 +201,10 @@ export default {
         treeRows({
           getSubrecords(record) {
             if (_.isArray(record.Emails)) {
-              return _.map(record.Emails, Email => ({ Email }));
+              return _.map(record.Emails, (Email, index) => ({
+                UserName: `${record.UserName}-email(${index})`,
+                Email,
+              }));
             }
             return [];
           },
