@@ -14,22 +14,32 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: 'vue-test-loader',
+          loaders: {
+            js: 'babel-loader',
+          },
+          preLoaders: {
+            js: 'eslint-loader',
+          },
         },
       },
       {
         enforce: 'pre',
-        test: /\.(js|vue)$/,
+        test: /\.js$/,
         loader: 'eslint-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /dist/],
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /dist/],
       },
     ],
   },
