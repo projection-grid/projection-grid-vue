@@ -13,12 +13,25 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          loaders: {
+            js: 'babel-loader',
+          },
+          preLoaders: {
+            js: 'eslint-loader',
+          },
+        }
       },
       {
         enforce: 'pre',
-        test: /\.(js|vue)$/,
+        test: /\.js$/,
         loader: 'eslint-loader',
         exclude: [/node_modules/, /dist/],
       },
@@ -54,8 +67,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue-projection-grid': path.join(__dirname, '../../src/index'),
-      'projection-grid-core': 'projection-grid-core/src/index',
+      'vue-projection-grid': require.resolve('../../dist/index'),
     },
   },
 };
