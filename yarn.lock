@@ -1400,6 +1400,10 @@ consolidate@^0.14.0:
   dependencies:
     bluebird "^3.1.1"
 
+const@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/const/-/const-1.0.0.tgz#d159191665b6885f5d65c55335626a87cc6ec13c"
+
 constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"

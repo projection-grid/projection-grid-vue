@@ -1,20 +1,20 @@
 import _ from 'underscore';
 
-function reducer(config, { getSubrecords }) {
-  return _.defaults({
-    composeTrs(options) {
-      const { record } = options;
+function decorate({ composeDataTrs }, config, { getSubrecords }) {
+  return {
+    composeDataTrs(tr) {
+      const { record } = tr;
 
-      return [
-        config.composeTrs(options),
-      ].concat(_.map(
+      const trs = composeDataTrs(tr).concat(..._.map(
         getSubrecords(record),
-        rec => config.composeTrs(_.defaults({ record: rec }, options))
+        rec => composeDataTrs(_.defaults({ record: rec }, tr))
       ));
+
+      return trs;
     },
-  }, config);
+  };
 }
 
-export function treeRows(options) {
-  return { reducer, options };
+export function treeRows(config) {
+  return { decorate, config };
 }

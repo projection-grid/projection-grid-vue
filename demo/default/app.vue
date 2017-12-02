@@ -46,7 +46,7 @@ import _ from 'underscore';
 import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
 // import { iconedCell } from './projections/iconed-cell';
-import { dupRow } from './projections/dup-row';
+// import { dupRow } from './projections/dup-row';
 // import { dupColumn } from './projections/dup-column';
 import { treeRows } from './projections/tree-rows';
 
@@ -65,43 +65,62 @@ export default {
       isBordered: false,
       isStriped: false,
       isHover: false,
+      sortKey: '',
+      options: ['a', 'b'],
     };
   },
   computed: {
     config() {
       return {
+        classes: ['projection-grid'],
+        caption: {
+          events: {
+            click() {
+              window.console.log('Clicking table title');
+            },
+          },
+          styles: {
+            textAlign: 'center',
+          },
+          content: {
+            props: { text: 'This is a table' },
+          },
+        },
         records: this.records,
         columns: [
           {
             name: 'UserName',
+            sorting: this.sortKey === 'UserName' ? 'asc' : true,
             col: {
-              props: ({ column }) => ({ 'data-name': column.name }),
+              props: ({ column }, props) => _.defaults({ 'data-name': column.name }, props),
               classes: () => ['user-name'],
             },
             td: {
-              content: (options, content) => ({
-                Component: UserNameCell,
-                props: _.defaults({ content }, options),
-              }),
-              styles: () => ({
+              content: { Component: UserNameCell },
+              styles: {
                 background: 'lightcyan',
-              }),
-              classes: () => ['user-name'],
+              },
+              classes: ['user-name'],
             },
           },
           {
             name: 'FirstName',
+            sorting: this.sortKey === 'FirstName' ? 'asc' : true,
             th: {
-              events: ({ column }) => ({
+              events: ({ column }, events) => _.defaults({
                 click() {
                   window.console.log(`Clicking column header "${column.name}"`);
                 },
-              }),
+              }, events),
             },
             td: {
               content: {
-                Component: _.constant(FirstNameCell),
-                props: ({ column, record }) => ({ column, record }),
+                Component: FirstNameCell,
+                events: ({ record, column: { name } }, events) => _.defaults({
+                  click() {
+                    window.console.log(`Clicking name "${record[name]}"`);
+                  },
+                }, events),
               },
             },
           },
@@ -109,25 +128,25 @@ export default {
           {
             name: 'Email',
             td: {
-              events: ({ record }) => ({
+              events: ({ record }, events) => _.defaults({
                 click: () => window.console.log(record),
-              }),
+              }, events),
             },
           },
           {
             name: 'Count',
-            td: {
-              props: ({ record, config: { primaryKey } }, props) => _.defaults({
+            td: ({ record, table: { primaryKey } }, { props, content }) => ({
+              props: _.defaults({
                 'data-key': record[primaryKey],
               }, props),
-              content: ({ record, config }, content) => ({
+              content: {
                 Component: CounterCell,
-                props: { content, record },
+                props: { record, content },
                 events: {
                   inc: () => {
-                    const key = record[config.primaryKey];
+                    const key = record[primaryKey];
                     this.records = _.map(this.records, (rec) => {
-                      if (rec[config.primaryKey] === key) {
+                      if (rec[primaryKey] === key) {
                         return _.defaults({
                           Count: rec.Count + 1,
                         }, rec);
@@ -136,16 +155,38 @@ export default {
                     });
                   },
                 },
-              }),
-            },
+              },
+            }),
           },
         ],
         primaryKey: 'UserName',
+        sort: {
+          handleResort: (key) => {
+            this.records = _.sortBy(this.records, key);
+            this.sortKey = key;
+          },
+        },
+        colgroup: {
+          classes: ['my-colgroup'],
+        },
+        tbody: {
+          tr: {
+            classes: ['table-row'],
+            props: ({ record, table: { primaryKey } }) => ({
+              'data-key': record[primaryKey],
+            }),
+            td: {
+              classes: ['cell'],
+              props: ({ record, column: { name } }) => ({
+                title: record[name],
+              }),
+            },
+          },
+        },
       };
     },
     projections() {
       return [
-        // headCompoent(MyTableHeader),
         customCSS({
           tableClass: _.compact([
             'table',
@@ -155,12 +196,15 @@ export default {
           ]),
         }),
         // iconedCell({ icon: this.icon }),
-        dupRow,
+        // dupRow,
         // dupColumn,
         treeRows({
           getSubrecords(record) {
             if (_.isArray(record.Emails)) {
-              return _.map(record.Emails, Email => ({ Email }));
+              return _.map(record.Emails, (Email, index) => ({
+                UserName: `${record.UserName}-email(${index})`,
+                Email,
+              }));
             }
             return [];
           },

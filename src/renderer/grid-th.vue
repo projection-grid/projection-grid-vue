@@ -1,6 +1,6 @@
 <template>
   <th v-bind="attributes" v-on="events">
-    <grid-content v-bind="content" />
+    <grid-content v-bind="content"/>
   </th>
 </template>
 <script>
