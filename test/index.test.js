@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils';
-import ProjectionGrid from '../src/index';
+import ProjectionGridVue from '../src/index';
 
 /* global expect */
 const config = {
@@ -8,17 +8,17 @@ const config = {
   columns: [{ name: 'UserName' }],
 };
 
-describe('VueProjectionGrid', () => {
+describe('ProjectionGridVue', () => {
   test('should not throw any errors', () => {
     expect(() => {
-      mount(ProjectionGrid, {
+      mount(ProjectionGridVue, {
         propsData: { config },
       }).not.toThrow();
     });
   });
 
   test('is a Vue instance', () => {
-    expect(mount(ProjectionGrid, {
+    expect(mount(ProjectionGridVue, {
       propsData: { config },
     }).isVueInstance()).toBeTruthy();
   });

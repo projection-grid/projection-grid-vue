@@ -7,9 +7,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: __dirname + '/dist',
-    filename: 'index.js',
+    filename: 'projection-grid-vue.js',
     libraryTarget: 'umd',
-    library: 'VueProjectionGrid',
+    library: 'ProjectionGridVue',
   },
   module: {
     rules: [
