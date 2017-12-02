@@ -43,7 +43,7 @@
 
 <script>
 import _ from 'underscore';
-import ProjectionGrid from 'vue-projection-grid'; // eslint-disable-line
+import ProjectionGrid from 'projection-grid-vue'; // eslint-disable-line
 import { customCSS } from './projections/custom-css';
 // import { iconedCell } from './projections/iconed-cell';
 // import { dupRow } from './projections/dup-row';

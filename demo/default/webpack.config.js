@@ -67,7 +67,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue-projection-grid': require.resolve('../../dist/index'),
+      'projection-grid-vue': require.resolve('../../dist/index'),
     },
   },
 };

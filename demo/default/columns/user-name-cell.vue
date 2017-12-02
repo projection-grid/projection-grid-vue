@@ -2,7 +2,7 @@
   <b v-on="$listeners"><grid-content v-bind="content"/></b>
 </template>
 <script>
-import { GridContent } from 'vue-projection-grid'; // eslint-disable-line
+import { GridContent } from 'projection-grid-vue'; // eslint-disable-line
 
 export default {
   props: ['column', 'record', 'table', 'content'],

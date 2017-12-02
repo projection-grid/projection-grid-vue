@@ -1,4 +1,4 @@
-# vue-projection-grid
+# projection-grid-vue
 
 ## Development
 
@@ -62,7 +62,7 @@ coverage threashold is defined in the root package.json. Default test task will 
 </template>
 
 <script>
-import VueProjectionGrid, { ScrollingPlugin, FilterPlugin } from 'vue-projection-grid';
+import VueProjectionGrid, { ScrollingPlugin, FilterPlugin } from 'projection-grid-vue';
 
 export default {
   components: {
