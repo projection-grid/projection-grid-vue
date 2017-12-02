@@ -51,5 +51,6 @@ module.exports = {
       root: '_',
     },
     'projection-grid-core': true,
+    'vue': true,
   },
 };
