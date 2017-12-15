@@ -4,11 +4,11 @@
 <script>
 import ProjectionGridCore from 'projection-grid-core';
 import Renderer from './renderer/index.vue';
-import { DefaultCell, DefaultHeader } from './default-components';
+import defaults from './builtin-projections/defaults';
 
 export default {
   created() {
-    this.core = new ProjectionGridCore({ DefaultCell, DefaultHeader });
+    this.core = new ProjectionGridCore();
   },
 
   components: { Renderer },
@@ -17,7 +17,7 @@ export default {
     renderModel() {
       const model = this.core.compose({
         config: this.config || {},
-        projections: this.projections || [],
+        projections: [defaults].concat(this.projections || []),
       });
       return model;
     },

@@ -27,7 +27,7 @@ module.exports = {
           preLoaders: {
             js: 'eslint-loader',
           },
-        }
+        },
       },
       {
         enforce: 'pre',
@@ -67,7 +67,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'projection-grid-vue': require.resolve('../../dist/index'),
+      'projection-grid-vue': require.resolve('../../src/index'),
     },
   },
 };

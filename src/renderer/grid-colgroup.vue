@@ -8,7 +8,7 @@ import GridCol from './grid-col.vue';
 import { attributes } from './util';
 
 export default {
-  props: ['props', 'styles', 'classes', 'events', 'cols'],
+  props: ['tag', 'props', 'styles', 'classes', 'events', 'cols'],
   computed: { attributes },
   components: { GridCol },
 };
