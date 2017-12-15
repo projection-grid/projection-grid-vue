@@ -1,34 +1,20 @@
-import DefaultCell from './default-cell.vue';
-import DefaultHeader from './default-header.vue';
+import DefaultContent from './default-content.vue';
 
 export default function ({
   composeTds,
 }) {
   return {
     composeTds(td) {
-      const { data, col, isHeader } = td;
+      return composeTds(td).map((model) => {
+        const { content } = model;
 
-      if (col) {
-        if (isHeader) {
-          return composeTds(Object.assign({}, td, {
-            content: {
-              Component: DefaultHeader,
-              props: { col },
-            },
-          }));
-        }
-
-        const { Component = DefaultCell } = col;
-
-        return composeTds(Object.assign({}, td, {
+        return content.Component ? model : Object.assign({}, model, {
           content: {
-            Component,
-            props: { col, data },
+            Component: DefaultContent,
+            props: { text: content },
           },
-        }));
-      }
-
-      return composeTds(td);
+        });
+      });
     },
   };
 }

@@ -9,7 +9,7 @@
 import { GridContent } from 'projection-grid-vue'; // eslint-disable-line
 
 export default {
-  props: ['record', 'content'],
+  props: ['data', 'content'],
   components: { GridContent },
 };
 </script>
