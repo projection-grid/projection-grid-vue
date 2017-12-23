@@ -11,7 +11,7 @@
 import GridCaption from './grid-caption.vue';
 import GridColgroup from './grid-colgroup.vue';
 import GridSection from './grid-section.vue';
-import { attributes } from './util';
+import { attributes } from './attributes';
 
 export default {
   props: ['tag', 'props', 'styles', 'classes', 'events', 'caption', 'colgroups', 'thead', 'tbodies', 'tfoot'],

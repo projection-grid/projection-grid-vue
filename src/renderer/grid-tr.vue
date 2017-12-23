@@ -5,7 +5,7 @@
 </template>
 <script>
 import GridTd from './grid-td.vue';
-import { attributes } from './util';
+import { attributes } from './attributes';
 
 export default {
   props: ['tag', 'props', 'styles', 'classes', 'events', 'tds', 'ths'],

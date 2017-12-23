@@ -8,7 +8,7 @@ import defaults from './builtin-projections/defaults';
 
 export default {
   created() {
-    this.core = new ProjectionGridCore();
+    this.core = ProjectionGridCore.createDefault();
   },
 
   components: { Renderer },
@@ -17,7 +17,7 @@ export default {
     renderModel() {
       const model = this.core.compose({
         config: this.config || {},
-        projections: [defaults].concat(this.projections || []),
+        projections: [defaults, ...this.projections || []],
       });
       return model;
     },

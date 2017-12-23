@@ -5,7 +5,7 @@
 </template>
 <script>
 import GridContent from './grid-content.vue';
-import { attributes } from './util';
+import { attributes } from './attributes';
 
 export default {
   props: ['tag', 'props', 'styles', 'classes', 'events', 'content'],

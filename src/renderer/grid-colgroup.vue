@@ -5,7 +5,7 @@
 </template>
 <script>
 import GridCol from './grid-col.vue';
-import { attributes } from './util';
+import { attributes } from './attributes';
 
 export default {
   props: ['tag', 'props', 'styles', 'classes', 'events', 'cols'],
