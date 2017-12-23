@@ -8,7 +8,8 @@
     "test": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "demo": "webpack && cd demo && webpack",
     "dev": "cd demo && webpack-dev-server --hot",
-    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
