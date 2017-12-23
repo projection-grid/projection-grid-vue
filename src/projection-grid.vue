@@ -2,13 +2,17 @@
   <renderer :options="renderer" :table="table"/>
 </template>
 <script>
-import ProjectionGridCore from 'projection-grid-core';
+import ProjectionGridCore, { projections } from 'projection-grid-core';
 import Renderer from './renderer/index.vue';
-import defaults from './builtin-projections/defaults';
+import defaultContent from './projections/default-content';
 
 export default {
   created() {
-    this.core = ProjectionGridCore.createDefault();
+    const core = ProjectionGridCore.createDefault();
+    const index = core.projections.indexOf(projections.defaultContent);
+
+    core.projections.splice(index, 0, defaultContent);
+    this.core = core;
   },
 
   components: { Renderer },
@@ -17,7 +21,7 @@ export default {
     renderModel() {
       const model = this.core.compose({
         config: this.config || {},
-        projections: [defaults, ...this.projections || []],
+        projections: this.projections || [],
       });
       return model;
     },

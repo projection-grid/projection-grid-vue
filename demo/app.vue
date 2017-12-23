@@ -43,8 +43,8 @@
 
 <script>
 import ProjectionGrid from 'projection-grid-vue';
-import _ from 'underscore';
 import people from './people.json';
+import IconedCell from './iconed-cell.vue';
 
 export default {
   components: { ProjectionGrid },
@@ -63,15 +63,22 @@ export default {
     config() {
       return {
         data: this.data,
-        classes: _.compact([
+        caption: { content: 'Projection Grid Vue' },
+        classes: [
           'table',
           this.isBordered && 'table-bordered',
           this.isStriped && 'table-striped',
           this.isHover && 'table-hover',
-        ]),
+        ].filter(cls => Boolean(cls)),
         primaryKey: 'UserName',
         cols: [{
           key: 'UserName',
+          $td: this.icon ? {
+            content: (td, content) => ({
+              Component: IconedCell,
+              props: { content, icon: this.icon },
+            }),
+          } : {},
         }, {
           key: 'FirstName',
         }, {
