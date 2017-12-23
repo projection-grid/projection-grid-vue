@@ -3,7 +3,7 @@ import DefaultContent from './default-content.vue';
 function wrap(model) {
   const { content } = model;
 
-  return content.Component ? model : {
+  return content && content.Component ? model : {
     ...model,
     content: {
       Component: DefaultContent,
