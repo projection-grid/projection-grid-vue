@@ -2,10 +2,10 @@
   <col v-bind="attributes" v-on="events"/>
 </template>
 <script>
-import { attributes } from './util';
+import { attributes } from './attributes';
 
 export default {
-  props: ['props', 'styles', 'classes', 'events'],
+  props: ['tag', 'props', 'styles', 'classes', 'events'],
   computed: { attributes },
 };
 </script>

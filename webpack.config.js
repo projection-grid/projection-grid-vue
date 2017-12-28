@@ -44,12 +44,6 @@ module.exports = {
     ],
   },
   externals: {
-    underscore: {
-      commonjs: 'underscore',
-      commonjs2: 'underscore',
-      amd: 'underscore',
-      root: '_',
-    },
     'projection-grid-core': true,
     'vue': true,
   },

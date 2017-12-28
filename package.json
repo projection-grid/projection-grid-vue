@@ -1,14 +1,15 @@
 {
   "name": "projection-grid-vue",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "description": "```vue\r <template lang=\"pug\">\r .grid-example\r   .filter-container\r   .grid-container\r     grid(config=\"gridConfig\", grid-dataSource=\"gridDataSource\")\r       scroll(view-port={{window}} virtualized header.sticky={{ {offset => () => {\r         // calculating offset\r       }} }})\r       filter(v-bind:conditions=\"filters\")\r   .pagination-control-container\r </template>",
-  "main": "dist/index",
+  "main": "dist/projection-grid-vue",
   "scripts": {
     "build": "webpack",
     "test": "jest --setupTestFrameworkScriptFile=raf/polyfill",
-    "demo": "webpack && cd demo/default && webpack",
-    "dev": "cd demo/default && webpack-dev-server --hot",
-    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc"
+    "demo": "webpack && cd demo && webpack",
+    "dev": "cd demo && webpack-dev-server --hot",
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "bootstrap": "^3.3.7",
     "const": "^1.0.0",
@@ -67,8 +69,7 @@
     "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
-    "projection-grid-core": "^0.1.1",
-    "underscore": "1.8.3",
+    "projection-grid-core": "^0.2.0",
     "vue": "^2.4.4"
   },
   "jest": {

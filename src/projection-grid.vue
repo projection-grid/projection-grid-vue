@@ -2,13 +2,17 @@
   <renderer :options="renderer" :table="table"/>
 </template>
 <script>
-import ProjectionGridCore from 'projection-grid-core';
+import ProjectionGridCore, { projections } from 'projection-grid-core';
 import Renderer from './renderer/index.vue';
-import { DefaultCell, DefaultHeader } from './default-components';
+import defaultContent from './projections/default-content';
 
 export default {
   created() {
-    this.core = new ProjectionGridCore({ DefaultCell, DefaultHeader });
+    const core = ProjectionGridCore.createDefault();
+    const index = core.projections.indexOf(projections.defaultContent);
+
+    core.projections.splice(index, 0, defaultContent);
+    this.core = core;
   },
 
   components: { Renderer },

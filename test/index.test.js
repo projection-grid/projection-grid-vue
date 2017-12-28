@@ -22,6 +22,4 @@ describe('ProjectionGridVue', () => {
       propsData: { config },
     }).isVueInstance()).toBeTruthy();
   });
-
-  // todo: test destory
 });
