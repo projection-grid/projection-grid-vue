@@ -13,6 +13,9 @@ export default {
 
   components: { Renderer },
   props: ['config', 'projections', 'renderer'],
+  data() {
+    return { state: {} };
+  },
   computed: {
     renderModel() {
       const model = this.core
@@ -20,6 +23,11 @@ export default {
         .use(this.projections || [])
         .compose({
           config: this.config || {},
+          state: this.state,
+          dispatch: (reducer, ...args) => {
+            this.state = reducer(this.state, ...args);
+            return this.state;
+          },
         });
       return model;
     },
