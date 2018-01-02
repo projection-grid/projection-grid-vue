@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import ProjectionGrid from 'projection-grid-vue';
 import people from './people.json';
 import IconedCell from './iconed-cell.vue';
@@ -86,6 +87,14 @@ export default {
         }, {
           key: 'Emails',
         }],
+        sorting: {
+          $td: {
+            classes: ['sorting'],
+          },
+          onSort: (key) => {
+            this.data = key ? _.sortBy(people.value, key) : people.value;
+          },
+        },
       };
     },
     projections() {
@@ -94,3 +103,8 @@ export default {
   },
 };
 </script>
+<style>
+th.sorting {
+  background: cyan;
+}
+</style>
