@@ -1,6 +1,6 @@
 {
   "name": "projection-grid-vue",
-  "version": "0.2.3",
+  "version": "0.2.4-0",
   "description": "```vue\r <template lang=\"pug\">\r .grid-example\r   .filter-container\r   .grid-container\r     grid(config=\"gridConfig\", grid-dataSource=\"gridDataSource\")\r       scroll(view-port={{window}} virtualized header.sticky={{ {offset => () => {\r         // calculating offset\r       }} }})\r       filter(v-bind:conditions=\"filters\")\r   .pagination-control-container\r </template>",
   "main": "dist/projection-grid-vue",
   "scripts": {
@@ -9,7 +9,7 @@
     "demo": "webpack && cd demo && webpack",
     "dev": "cd demo && webpack-dev-server --hot",
     "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
