@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import ProjectionGrid from 'projection-grid-vue';
+import _ from 'lodash'; // eslint-disable-line
+import ProjectionGrid from 'projection-grid-vue'; // eslint-disable-line
 import people from './people.json';
 import IconedCell from './iconed-cell.vue';
 
@@ -88,11 +88,32 @@ export default {
           key: 'Emails',
         }],
         sorting: {
-          $td: {
+          cols: ['FirstName', 'LastName'],
+          $default: {
             classes: ['sorting'],
           },
-          onSort: (key) => {
-            this.data = key ? _.sortBy(people.value, key) : people.value;
+          $asc: {
+            classes: ['sorting'],
+            content: (td, content) => ({
+              Component: IconedCell,
+              props: { content, icon: 'arrow-up' },
+            }),
+          },
+          $desc: {
+            classes: ['sorting'],
+            content: (td, content) => ({
+              Component: IconedCell,
+              props: { content, icon: 'arrow-down' },
+            }),
+          },
+          onSort: ({ sortBy, direction }) => {
+            const dataAsc = _.sortBy(people.value, sortBy);
+
+            if (direction === 'desc') {
+              this.data = _.reverse(dataAsc);
+            } else {
+              this.data = dataAsc;
+            }
           },
         },
       };
@@ -105,6 +126,6 @@ export default {
 </script>
 <style>
 th.sorting {
-  background: cyan;
+  cursor: pointer;
 }
 </style>
