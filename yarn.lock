@@ -4809,9 +4809,9 @@ progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
 
-projection-grid-core@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/projection-grid-core/-/projection-grid-core-0.2.3.tgz#2b5ef90699ef06e0c3fab8278ee9a8218a626e91"
+projection-grid-core@0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/projection-grid-core/-/projection-grid-core-0.2.6.tgz#0ca8f3d42e76ea097d54463b3016f949517ea0a8"
 
 promise@^7.1.1:
   version "7.3.1"
@@ -6022,7 +6022,7 @@ vue-test-utils@^1.0.0-beta.4:
   dependencies:
     lodash "^4.17.4"
 
-vue@^2.4.4:
+vue@^2.5.13:
   version "2.5.13"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.13.tgz#95bd31e20efcf7a7f39239c9aa6787ce8cf578e1"
 
