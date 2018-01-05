@@ -26,6 +26,8 @@ export default {
       } else {
         this.gridState = state;
       }
+
+      return state;
     },
   },
   computed: {
@@ -36,10 +38,9 @@ export default {
         .compose({
           config: this.config || {},
           state: this.state || this.gridState,
-          dispatch: this.dispath || ((reducer, ...args) => {
-            this.setState(reducer(this.getState(), ...args));
-            return this.getState();
-          }),
+          dispatch: this.dispath || ((reducer, ...args) =>
+            this.setState(reducer(this.getState(), ...args))
+          ),
         });
       return model;
     },
