@@ -9,8 +9,14 @@
     "demo": "webpack && cd demo && webpack",
     "dev": "cd demo && webpack-dev-server --hot",
     "jsdoc": "jsdoc -c ./jsdoc.config.json -d ./jsdoc",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
+  "files": [
+    "src",
+    "dist",
+    "demo",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/projection-grid/projection-grid-vue.git"
