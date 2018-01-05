@@ -12,9 +12,21 @@ export default {
   },
 
   components: { Renderer },
-  props: ['config', 'projections', 'renderer'],
+  props: ['config', 'projections', 'renderer', 'state', 'dispath'],
   data() {
-    return { state: {} };
+    return { gridState: {} };
+  },
+  methods: {
+    getState() {
+      return this.state || this.gridState;
+    },
+    setState(state) {
+      if (this.state) {
+        this.state = state;
+      } else {
+        this.gridState = state;
+      }
+    },
   },
   computed: {
     renderModel() {
@@ -23,11 +35,11 @@ export default {
         .use(this.projections || [])
         .compose({
           config: this.config || {},
-          state: this.state,
-          dispatch: (reducer, ...args) => {
-            this.state = reducer(this.state, ...args);
-            return this.state;
-          },
+          state: this.state || this.gridState,
+          dispatch: this.dispath || ((reducer, ...args) => {
+            this.setState(reducer(this.getState(), ...args));
+            return this.getState();
+          }),
         });
       return model;
     },
